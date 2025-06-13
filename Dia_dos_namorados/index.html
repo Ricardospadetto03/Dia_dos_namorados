@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Dia dos Namorados</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Tela de introdução com o botão -->
+  <div id="intro-screen" class="intro-screen">
+    <button id="start-button" class="start-button">Clique aqui para ver as fotos</button>
+  </div>
+
+  <!-- Header (cabeçalho) e a galeria -->
+  <header id="header" style="display: none;">
+    <h1>Feliz Dia dos Namorados</h1>
+    <h2>Os melhores 3 anos da minha vida</h2>
+  </header>
+
+  <main id="main" style="display: none;">
+    <!-- Foto Centralizada com moldura -->
+    <section class="photo-gallery">
+      <div class="photo-container">
+        <button class="nav-button" id="prev-btn">⬅️</button>
+        <img id="photo" class="photo" src="fotos/WhatsApp Image 2025-06-12 at 02.08.02.jpeg" alt="nossa foto">
+        <button class="nav-button" id="next-btn">➡️</button>
+      </div>
+      <p id="photo-caption">Você é meu porto seguro.</p> <!-- Frase de amor -->
+    </section>
+    
+    <!-- Contador de tempo -->
+    <section class="counter">
+      <p id="counter-time"></p>
+    </section>
+  </main>
+
+  <div class="hearts"></div>
+
+  <!-- Audio (som) carregado quando o botão é clicado -->
+  <audio id="audio" loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    // Função para exibir a tela de fotos ao clicar no botão
+    document.getElementById("start-button").addEventListener("click", function() {
+      // Oculta a tela inicial
+      document.getElementById("intro-screen").style.display = "none";
+      // Exibe a galeria de fotos e o cabeçalho
+      document.getElementById("header").style.display = "block";
+      document.getElementById("main").style.display = "block";
+      
+      // Inicia o áudio
+      const audio = document.getElementById("audio");
+      audio.play();
+    });
+
+    // Contador de tempo
+    const startDate = new Date("2023-06-12T00:00:00"); // Data de início do relacionamento
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      
+      // Calculando a diferença em dias, horas, minutos e segundos
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("counter-time").textContent = 
+        `❤ Estamos juntos há: ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+    }
+
+    setInterval(updateCounter, 1000); // Atualiza a cada segundo
+
+    let currentPhotoIndex = 0;
+    const photos = [
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.08.02.jpeg',
+        caption: 'Você é meu porto seguro.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.08.03.jpeg',
+        caption: 'Te amo infinitamente!'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.08.07.jpeg',
+        caption: 'Com você, tudo faz sentido.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.08.10.jpeg',
+        caption: 'Meu mundo é mais bonito com você.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.44 (1).jpeg',
+        caption: 'Você é minha melhor escolha.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.44.jpeg',
+        caption: 'Te escolheria mil vezes.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.45.jpeg',
+        caption: 'Amor da minha vida!'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.46.jpeg',
+        caption: 'Obrigado por existir.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.47.jpeg',
+        caption: 'Nós dois contra o mundo.'
+      },
+      {
+        src: 'fotos/WhatsApp Image 2025-06-12 at 02.11.48.jpeg',
+        caption: 'Para sempre ao seu lado.'
+      }
+    ];
+
+    const photoElement = document.getElementById('photo');
+    const captionElement = document.getElementById('photo-caption');
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
+
+    function changePhoto(direction) {
+      currentPhotoIndex += direction;
+      if (currentPhotoIndex < 0) currentPhotoIndex = photos.length - 1;
+      if (currentPhotoIndex >= photos.length) currentPhotoIndex = 0;
+
+      photoElement.src = photos[currentPhotoIndex].src;
+      captionElement.textContent = photos[currentPhotoIndex].caption;
+    }
+
+    prevButton.addEventListener('click', () => changePhoto(-1));
+    nextButton.addEventListener('click', () => changePhoto(1));
+
+    function generateHearts() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw'; 
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(generateHearts, 500);
+  </script>
+
+</body>
+</html>

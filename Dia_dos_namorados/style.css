@@ -1,0 +1,195 @@
+/* Estilo geral */
+body {
+  font-family: 'Dancing Script', cursive;
+  background-color: #fff0f5;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #ffb6c1;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Contorno preto nas letras */
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Tela inicial com o botão */
+.intro-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffb6c1;
+}
+
+.start-button {
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  background-color: #f60000; /* Cor vermelha */
+  color: white;
+  border: 2px solid black; /* Contorno preto */
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Sombra no botão */
+}
+
+.start-button:hover {
+  background-color: #e60000; /* Cor de hover vermelha */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7); /* Efeito de sombra ao passar o mouse */
+}
+
+/* Estilo da galeria */
+.photo-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.photo-container {
+  position: relative;
+  border: 8px solid #ff0000; /* Alterado para vermelho */
+  border-radius: 25px;
+  overflow: hidden;
+  padding: 20px;
+  max-width: 100%; /* Ajusta para o celular */
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  font-size: 1.5rem;
+  background-color: #ffcccc; /* Cor rosa claro */
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#prev-btn {
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+#next-btn {
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+#photo-caption {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff0000; /* Cor vermelha */
+  margin-top: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Contorno preto nas letras da legenda */
+}
+
+/* Animação de corações */
+.heart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+  background-size: contain;
+  animation: floatUp 6s linear infinite;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+  /* Ajusta o layout da galeria e da foto */
+  .photo-gallery {
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  .photo-container {
+    padding: 10px;
+    max-width: 90%;
+  }
+
+  .photo {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 10px;
+  }
+
+  .nav-button {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+
+  #prev-btn, #next-btn {
+    font-size: 1.2rem;
+  }
+
+  #photo-caption {
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Ajusta o botão de navegação no celular */
+  .start-button {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+  }
+
+  .heart {
+    width: 25px;
+    height: 25px;
+  }
+}
+
